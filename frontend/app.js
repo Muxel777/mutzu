@@ -1,9 +1,12 @@
 // ── Configuración de la API ───────────────────────────────────────────────────
 // Este es el ÚNICO lugar donde debes cambiar la URL al desplegar.
 // Detecta automáticamente si estamos en desarrollo local o en producción.
+// ── Configuración de la API ───────────────────────────────────────────────────
 const API_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
-  ? "http://localhost:3000"                     // Desarrollo local
-  : "https://mutzu.onrender.com";               // URL del backend en Render
+  ? "http://localhost:3000"                           // Desarrollo local
+  : "https://mutzu-backend.onrender.com/api";         //  URL del backend en Render 
+
+// El resto del archivo queda IGUAL...
 
 // ── Estado de la aplicación ───────────────────────────────────────────────────
 let allTasks = [];        // Lista completa de tareas traída de la API
