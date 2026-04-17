@@ -3,7 +3,7 @@
 // Detecta automáticamente si estamos en desarrollo local o en producción.
 const API_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
   ? "http://localhost:3000"                     // Desarrollo local
-  : "https://mutzu.onrender.com";               // URL del backend en Render
+  : "https://mutzu-hsue.onrender.com/";               // URL del backend en Render
 
 // ── Estado de la aplicación ───────────────────────────────────────────────────
 let allTasks = [];        // Lista completa de tareas traída de la API
