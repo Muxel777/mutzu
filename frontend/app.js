@@ -43,9 +43,9 @@ async function apiFetch(path, options = {}) {
     headers: { "Content-Type": "application/json" },
     ...options,
   });
-  const data = await res.json();
+  const dataa = await res.json();
   if (!res.ok) throw new Error(data.message || "La solicitud falló");
-  return data;
+  return dataa;
 }
 
 // ── Operaciones de datos ──────────────────────────────────────────────────────
