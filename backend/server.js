@@ -33,13 +33,21 @@ app.get(['/api/tasks', '/api/tasks/'], async (req, res) => {
     }
 });
 
-app.get('/api/tasks/:id',(req, res) => {});
+app.get('/api/tasks/:id',(req, res) => {
+    res.json({ data: {} });
+});
 
-app.post('/api/tasks/:id',(req, res) => {});
+app.post('/api/tasks/:id',(req, res) => {
+    res.json({ data: {} });
+});
 
-app.put('/api/tasks/:id',(req, res) => {});
+app.put('/api/tasks/:id',(req, res) => {
+    res.json({ data: {} });
+});
 
-app.delete('/api/tasks/:id',(req, res) => {});
+app.delete('/api/tasks/:id',(req, res) => {
+    res.json({ data: {} });
+});
 
 
 //.get(/tasks/) consultar todas las tareas
