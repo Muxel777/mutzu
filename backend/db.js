@@ -6,16 +6,16 @@ require('dotenv').config();
 // Esto mejora el rendimiento y evita agotar el límite de conexiones
 // del servidor de base de datos (Railway permite ~10 en el plan gratuito).
 const pool = mysql.createPool({
-  host: process.env.MYSQLHOST || process.env.DB_HOST || 'localhost',
-  port: parseInt(process.env.MYSQLPORT || process.env.DB_PORT || '3306'),
-  user: process.env.MYSQLUSER || process.env.DB_USER || 'root',
-  password: process.env.MYSQLPASSWORD || process.env.DB_PASSWORD || '',
-  database: process.env.MYSQLDATABASE || process.env.DB_NAME || 'mutzu_db',
+  host: process.env.MYSQLHOST || 'mysql.railway.internal',
+  port: parseInt(process.env.MYSQLPORT || '3306'),
+  user: process.env.MYSQLUSER || 'root',
+  password: process.env.MYSQLPASSWORD || 'aOaesbiWIPdBBXJogelIZHYGNkPuLaav',
+  database: process.env.MYSQLDATABASE || 'railway',
   waitForConnections: true,
   connectionLimit: 10,   // Máximo de conexiones simultáneas al pool
   queueLimit: 0,         // Sin límite de solicitudes en cola
   // SSL es obligatorio para bases de datos en la nube (Railway, PlanetScale, etc.)
-  ssl: process.env.MYSQL_SSL === "true" ? { rejectUnauthorized: false } : undefined
+  ssl: { rejectUnauthorized: false }
 });
 
 // Verifica la conexión al arrancar el servidor.
@@ -23,8 +23,9 @@ const pool = mysql.createPool({
 // es mejor un error claro al inicio que un crash misterioso en producción.
 async function initDatabase() {
   try {
-    await pool.query(`CREATE DATABASE IF NOT EXISTS ${process.env.MYSQLDATABASE || 'mutzu_db'}`);
-    await pool.query(`USE ${process.env.MYSQLDATABASE || 'mutzu_db'}`);
+      const connection = await pool.getConnection();
+    console.log('✅ Conectado a MySQL en Railway');
+    connection.release();
 
     await pool.query(`
       CREATE TABLE IF NOT EXISTS tasks (
@@ -53,6 +54,8 @@ async function initDatabase() {
     console.log('Base de datos inicializada correctamente');
   } catch (error) {
     console.error('Error inicializando BD:', error.message);
+    console.error('Detalles:', error);
+    throw error;
   }
 }
 
