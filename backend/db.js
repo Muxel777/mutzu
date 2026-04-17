@@ -14,10 +14,7 @@ const pool = mysql.createPool({
   connectionLimit: 10,   // Máximo de conexiones simultáneas al pool
   queueLimit: 0,         // Sin límite de solicitudes en cola
   // SSL es obligatorio para bases de datos en la nube (Railway, PlanetScale, etc.)
-  ssl:
-    process.env.DB_SSL === "true"
-      ? { rejectUnauthorized: false }
-      : undefined,
+  ssl: process.env.DB_SSL === "true" ? { rejectUnauthorized: false } : undefined,
 });
 
 // Verifica la conexión al arrancar el servidor.
