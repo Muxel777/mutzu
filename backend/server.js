@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 //get: enviar informacion, post: recibir informacion, 
 // put: actualizar informacion, delete: eliminar informacion
 
-app.get('/api/tasks/', async (req, res) => {
+app.get('/api/tasks', async (req, res) => {
     try {
         res.json({ data: [] });
     } catch (error) {
