@@ -39,10 +39,23 @@ const modalCancel     = document.getElementById("modal-cancel");
 // Agrega los headers necesarios y lanza un error si el servidor responde con fallo.
 
 async function apiFetch(path, options = {}) {
-  const res = await fetch(`${API_URL}${path}`, {
+  const fullUrl = `${API_URL}${path}`;
+  console.log("Llamando a:", fullUrl);
+
+  const res = await fetch(fullUrl, {
     headers: { "Content-Type": "application/json" },
     ...options,
   });
+  console.log("Status:", res.status);  // Ver el código de respuesta
+  console.log("Content-Type:", res.headers.get("content-type"));  // Ver tipo de respuesta
+
+  const contentType = res.headers.get("content-type");
+  if (!contentType || !contentType.includes("application/json")) {
+    const text = await res.text();
+    console.error("Respuesta no JSON:", text.substring(0, 200));
+    throw new Error(`El servidor respondió con ${contentType || 'tipo desconocido'}.`);
+  }
+
   const dataa = await res.json();
   if (!res.ok) throw new Error(data.message || "La solicitud falló");
   return dataa;
