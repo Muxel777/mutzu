@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 app.get('/api/tasks/', async (req, res) => {
     try {
         const [tasks] = await db.query ('SELECT * FROM tasks');
-        res.json({ data: tasks });
+        res.json({ data: [] });
     } catch (error) {
         res.status(500).json({ error: 'Internal Server Error' });
     }
