@@ -10,7 +10,7 @@ app.use(cors(
     {
         origin:[
         'http://localhost:3000',
-        'https://mutzu-amber.vercel.app/'
+        'https://mutzu-amber.vercel.app'
         ],
         credentials:true
     }
