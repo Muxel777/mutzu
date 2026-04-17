@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 //get: enviar informacion, post: recibir informacion, 
 // put: actualizar informacion, delete: eliminar informacion
 
-app.get('/api/tasks', async (req, res) => {
+app.get(['/api/tasks', '/api/tasks/'], async (req, res) => {
     try {
         res.json({ data: [] });
     } catch (error) {
@@ -33,13 +33,13 @@ app.get('/api/tasks', async (req, res) => {
     }
 });
 
-app.get('/api/task/:id',(req, res) => {});
+app.get('/api/tasks/:id',(req, res) => {});
 
-app.post('/api/task/:id',(req, res) => {});
+app.post('/api/tasks/:id',(req, res) => {});
 
-app.put('/api/task/:id',(req, res) => {});
+app.put('/api/tasks/:id',(req, res) => {});
 
-app.delete('/api/task/:id',(req, res) => {});
+app.delete('/api/tasks/:id',(req, res) => {});
 
 
 //.get(/tasks/) consultar todas las tareas
