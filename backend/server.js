@@ -54,7 +54,7 @@ app.get('/api/tasks/:id', async (req, res) => {
   }
 });
 
-app.post('/api/tasks/:id', async (req, res) => {
+app.post('/api/tasks', async (req, res) => {
     try {
     const { title, description, priority, status } = req.body;
     
@@ -70,7 +70,7 @@ app.post('/api/tasks/:id', async (req, res) => {
   }
 });
 
-app.put('/api/tasks/:id',(req, res) => {
+app.put('/api/tasks/:id', async (req, res) => {
     try {
     const { title, description, priority, status } = req.body;
     
@@ -87,7 +87,7 @@ app.put('/api/tasks/:id',(req, res) => {
   }
 });
 
-app.delete('/api/tasks/:id',(req, res) => {
+app.delete('/api/tasks/:id', async (req, res) => {
     try {
     const existingTask = await getTaskById(req.params.id);
     if (!existingTask) {
