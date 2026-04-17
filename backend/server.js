@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
+const { initDatabase, getAllTasks, getTaskById, createTask, updateTask, deleteTask } = require('./db');
 
 //Middlewares -Decirle que autorice las piliticas del dominio
 app.use(cors(
